@@ -48,12 +48,12 @@ jobs:
 
       - name: Archive build
         run: |
-          tar -czf build-artifacts.tar.gz dist
-
+          tar -czf build-artifacts.tar.gz -C dist .
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ github.run_number }}
-          name: Release v${{ github.run_number }}
-          files: dist/*
+          tag_name: v1.${{ github.run_number }}
+          name: Release v1.${{ github.run_number }}
+          files: |
+            build-artifacts.tar.gz
