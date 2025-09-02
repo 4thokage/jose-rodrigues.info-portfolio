@@ -1,0 +1,58 @@
+name: Build & Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9 # or whichever you prefer
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build project
+        run: pnpm run build
+
+      - name: Verify bundle size (<14 KB gzipped)
+        run: |
+          gzip -c dist/index.html > dist/index.html.gz
+          gzip -c dist/style.css > dist/style.css.gz
+          gzip -c dist/script.js > dist/script.js.gz
+
+          total_size=$(du -cb dist/*.gz | grep total | awk '{print $1}')
+          echo "Total gzipped size: $total_size bytes"
+
+          if [ "$total_size" -ge 14336 ]; then
+            echo "❌ Bundle too large (>14KB gzipped)"
+            exit 1
+          fi
+
+      - name: Archive build
+        run: |
+          tar -czf build-artifacts.tar.gz dist
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: "Release v1.0.${{ github.run_number }}"
+          files: build-artifacts.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
