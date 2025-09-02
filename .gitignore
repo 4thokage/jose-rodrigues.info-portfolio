@@ -1,2 +1,7 @@
-dist/
+# Ignore build artifacts in dist
+dist/*.js
+dist/*.css
+dist/*.html
+!dist/.gitkeep
+
 node_modules/
