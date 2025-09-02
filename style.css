@@ -1,0 +1,213 @@
+/* Reset & general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABFklEQVRYR9WXURLDIAhE6/0PbSdOtUpcd1Gnpv1KGpTHBpCE1/cXq+vrMph7dGvXZTtpfW10DCA5jrH1H0Jhs5E0hnZdCR+vb5S8Nn8mQCeS9BdSalYJqMBjAGzq59xAESN7VFVUgV8AZB/dZBR7QTFDCqGquvUBVVoEtgIwpQRzmANSFHgWQKExHdIrPeuMvQNDarXe6nC/AutgV3JW+6bgqQLeV8FekRtgV+ToDKEKnACYKsfZjjkam7a0ZpYTytwmgainpC3HvwBocgKOxqRjehoR9DFKNFYtOwCGYCszobeCbl26N6yyQ6g8X/Wex/rBPsNEV6qAMaJPMynIHQCoSqS9JSMmwef51LflTgCRszU7DvAGiV6mHWfsaVUAAAAASUVORK5CYII=), auto
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  background: #fff;
+  /* white background */
+  color: #000;
+  /* black text */
+  line-height: 1.5;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+
+/* Terminal green selection */
+::selection {
+  background: #00ff00;
+  color: #000;
+}
+
+/* Dark theme toggle */
+body.dark {
+  background: #111;
+  color: #0f0;
+}
+
+/* Retro container */
+.retro-container {
+  border: 4px solid currentColor;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 900px;
+  min-height: calc(100vh - 2rem);
+  /* extend to viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header,
+footer {
+  background: inherit;
+  /* match current body background */
+  color: inherit;
+  /* match current body text */
+  border-color: currentColor;
+  /* border matches text color */
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid currentColor;
+}
+
+header nav button {
+  background: inherit;
+  /* match header background */
+  border: 2px solid currentColor;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+header nav button:hover {
+  background: currentColor;
+  /* invert on hover */
+  color: inherit;
+  /* ensure contrast */
+  transition: 0.2s;
+}
+
+header nav button:hover {
+  background: #0f0;
+  color: #000;
+  transition: 0.2s;
+}
+
+header nav a {
+  margin: 0 0.5rem;
+  color: inherit;
+  /* inherit text color (black or green) */
+  font-size: 0.75rem;
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+  color: currentColor;
+  /* optional: keep consistent on hover */
+  text-decoration: underline;
+}
+
+header nav a.active {
+  font-weight: bold;
+  /* highlight current section */
+  text-decoration: underline;
+}
+
+/* Main content */
+main {
+  padding: 2rem 1rem;
+  flex: 1;
+}
+
+section {
+  margin-bottom: 3rem;
+  /* spacing between sections */
+}
+
+h1,
+h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  border: 2px solid currentColor;
+  /* matches theme text color */
+  padding: 1rem;
+  flex: 1 1 200px;
+  background: inherit;
+  /* match container or theme */
+  color: inherit;
+  transition: transform 0.2s, background 0.3s, color 0.3s;
+  text-decoration: none;
+  cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: inherit;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.65rem;
+  border-top: 2px solid currentColor;
+}
+
+/* Responsive */
+@media(min-width:600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  header nav a,
+  header nav button {
+    font-size: 1rem;
+  }
+}
+
+/* Particles */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  box-shadow: 0 0 #0f0;
+}

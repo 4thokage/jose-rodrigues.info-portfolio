@@ -1,0 +1,17 @@
+{
+  "name": "jose-rodrigues.info-portfolio",
+  "version": "1.0.0",
+  "description": "José Rodrigues lightweight retro portfolio",
+  "type": "module",
+  "scripts": {
+    "build:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true index.html -o dist/index.html",
+    "build:css": "csso style.css --output dist/style.css",
+    "build:js": "terser script.js -c -m -o dist/script.js",
+    "build": "npm run build:html && npm run build:css && npm run build:js"
+  },
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "html-minifier-terser": "^7.2.0",
+    "terser": "^5.43.1"
+  }
+}
